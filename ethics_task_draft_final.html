@@ -1,0 +1,144 @@
+  
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+
+<style>
+	body {
+		padding-left: 20px;
+		margin-bottom: 20px;
+	}
+    
+    .slider-knob-inner {
+        color: red;
+    	width: 30px;
+    	height: 30px;
+	}
+    
+    
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <div id="errorBox"></div>
+        <div class="col-12">
+            <crowd-form>
+                <!--<full-instructions header="Task Instructions" >
+                <p>This is your task:</p>
+                <ol>
+                    <li></li>
+                    
+                </ol>
+                </full-instructions> -->
+                <center><h3>Evaluate how ethical or unethical this scenario is </h3><br/></center>
+
+                Certain terms that you're likely to see are defined below:<br/><br/>
+                <ol>
+                    <li><b>MyData</b> is data you have generated about yourself and to which you have access, control, and ownership. This includes data collected by your mobile devices (mobile phones and wearables), wellness applications, medical records, employment records, etc.</li><br/>
+                    <li><b>MyData operator</b> is a company that stores your MyData. MyData is collected from multiple sources and saved on a server through which you can access and control your data.</li><br/>
+                </ol>
+                <br/>
+
+                <!-- In this task you will be presented with a scenario related to your <b>MyData</b> and how it is treated and acted upon by your MyData operator, and a third party entity. You will be provided 1) an overview of the scenario, 2) the type of data used in the scenario, 3) the purpose and third party which will act upon your data, and 4) a reason for this event to occur. Based on these details you will be asked to rate how ethical or unethical the actions taken by other actors than you are.<br/><br/> -->
+
+                In this task, a scenario depicting how your <b>MyData</b> is treated and acted upon by your MyData operator and a third party entity is presented. The scenario includes 1) action taken by the MyData operator, 2) type of data used, 3) the purpose, and 4) a reason for the event to occur. Based on these, you will be asked to rate how ethical or unethical the scenario is.<br/>
+
+                <short-instructions>
+
+                In this task, a scenario depicting how your <b>MyData</b> is treated and acted upon by your MyData operator and a third party entity is presented. The scenario includes 1) action taken by the MyData operator, 2) type of data used, 3) the purpose, and 4) a reason for the event to occur. Based on these, you will be asked to rate how ethical or unethical the scenario is.<br/><br/>
+					
+					
+                    
+                </short-instructions>
+
+                <hr>
+                <h3>Scenario:</h3>
+                <h6>${HIT_operator_action}. This data includes your ${HIT_datatype}. ${HIT_purpose}. ${HIT_whyhappening}.</h6>
+                <hr>
+                <h3>Details:</h3>
+                <p><b>MyData operator action:</b> ${HIT_operator_action}</p>
+                <p><b>Data type:</b> ${HIT_datatype}</p>
+                <p><b>Purpose:</b> ${HIT_purpose}</p>
+                <p><b>Why did this happen:</b> ${HIT_whyhappening}</p>
+
+                <hr>
+                <h3>Your response:</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        
+                        <p><b>How ethical was the conduct in the scenario above</b> Use a scale from not at all ethical (value 1) to extremely ethical (value 5):</p>
+                        <div>
+                            <crowd-slider id="sliderE" name="sliderE" min="1" max="5" value="3" step="1" pin="true" required></crowd-slider>
+                        </div>
+                        <p>1: not at all <b>ethical</b></p>
+                        <p>5: extremely <b>ethical</b></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Which of the following <b>affected most your choice of ethicality?</b></p>
+                        <crowd-radio-group id="chooseOne">
+                            <crowd-radio-button name="brokerActionRadio" value="brokerActionRadio">MyData operator action</crowd-radio-button><br>
+                            <crowd-radio-button name="datatypeRadio" value="datatypeRadio">Data type</crowd-radio-button><br>
+                            <crowd-radio-button name="purposeRadio" value="purposeRadio">Purpose</crowd-radio-button><br>
+                            <crowd-radio-button name="whyhappeningRadio" value="whyhappeningRadio">Why did this happen</crowd-radio-button><br>
+                        </crowd-radio-group>
+                        <input type="hidden" name="scenarioID" value='${HIT_scenarioID}'>
+                    </div>
+                    <div class="col-sm-12">
+                        <hr>
+
+                        <p><b>How concerning was the conduct in the scenario above</b> Use a scale from not at all concerning (value 1) to extremely concerning (value 5):</p>
+                        <p>1: not at all <b>concerning</b></p>
+                        <p>5: extremely <b>concerning</b></p>
+                        <div>
+                            <crowd-slider id="sliderC" name="sliderC" min="1" max="5" value="3" step="1" pin="true" required></crowd-slider>
+                        </div>
+                        
+                    </div>
+                </div>
+            </crowd-form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+    
+    
+    $('crowd-slider').on('input change click', function(evt) {
+        $(this).attr("clicked", 1);
+        console.log("click");
+    });
+
+    var totalSliders = $("crowd-slider").length;
+    
+	document.querySelector('crowd-form').onsubmit = function(e) {
+        var chooseOneAnswered = $("#chooseOne > crowd-radio-button[checked]").length;
+        var slidersAnswered = $("crowd-slider[clicked]").length;
+
+    
+        
+        if((slidersAnswered != totalSliders) || chooseOneAnswered == 0) {
+            e.preventDefault();
+			errorBox.innerHTML = '<crowd-alert type="error" dismissible>You must select answers for everything.</crowd-alert>';
+	      	errorBox.scrollIntoView();
+	      	return;
+        }
+
+	}
+    
+    
+    
+</script>
